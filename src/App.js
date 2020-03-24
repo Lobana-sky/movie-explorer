@@ -10,9 +10,11 @@ class App extends React.Component {
     super()
     this.state = {
       movies: [],
-      query: ""
+      query: "",
+      cast : []
     }
   }
+
   constructURL = ()=>{
     let URL= ""
     const BASE_URL = "https://api.themoviedb.org/3";
@@ -24,7 +26,7 @@ class App extends React.Component {
     else{
       URL += `/search/movie?api_key=${API_KEY}&query=${this.state.query}&include_adult=false`
     }
-    console.log(URL)
+    //console.log(URL)
     return URL
   }
 
@@ -36,8 +38,9 @@ class App extends React.Component {
     .then(json=> {
       this.setState({
         movies: json.results
-      }, () => console.log(this.state))
+      })
     })
+
    }
 
    handleChange= (e)=>{
@@ -52,7 +55,7 @@ class App extends React.Component {
       .then(json=> {
         this.setState({
           movies: json.results
-        }, () => console.log(this.state))
+        })
       })
     }
    }
